@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import EvolutionChain from "./EvolutionChain";
 
 const PokemonDetail = () => {
 
@@ -47,43 +48,6 @@ const PokemonDetail = () => {
         </>
     );
 };
-
-const EvolutionChain = ({ url }) => {
-    const [evolutionChain, setEvolutionChain] = useState(null)
-
-    const fetchEvolutionChain = useCallback(() => {
-        axios.get(url)
-            .then((response) => {
-                setEvolutionChain(response.data)
-            })
-    }, [url])
-
-    useEffect(() => {
-        fetchEvolutionChain()
-    }, [fetchEvolutionChain])
-
-    if (evolutionChain === null) {
-        return (
-            <>
-                loading...
-            </>
-        )
-    }
-
-    return (
-        <>
-            <span>{evolutionChain.chain.species.name} {' > '} </span>
-            {evolutionChain.chain.evolves_to.length > 0 && (<>{evolutionChain.chain.evolves_to.map((item, key) => (
-                <span key={key}>
-                    {item.species.name}
-                    {item.evolves_to.length > 0 && (<>{item.evolves_to.map((item, key) => (
-                    <span key={key}> {' > '}{item.species.name}</span>
-                ))}</>)}
-                </span>
-            ))}</>)}
-        </>
-    )
-}
 
 export default PokemonDetail;
 
