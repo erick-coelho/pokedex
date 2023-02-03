@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, redirect } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 import NotFound from "../NotFound/NotFound";
+import PokemonList from "../PokemonList/PokemonList";
 import EvolutionChain from "./EvolutionChain";
 
 const PokemonDetail = () => {
@@ -36,6 +38,10 @@ const PokemonDetail = () => {
         }
     }, [id,fetchPokemon, pokemon, fetchSpecie])
 
+    const PokemonFilter = (searchName) => {
+        redirect('/')
+    };
+
     if ((pokemon && specie) === null) {
         return (
             <NotFound />
@@ -44,6 +50,7 @@ const PokemonDetail = () => {
 
     return (
         <>
+        <Navbar PokemonFilter={PokemonFilter}/>
             <div>
                 <span>{pokemon.name} - {pokemon.stats.map((item) => (<span key={item.stat.name}>{item.stat.name}: {item.base_stat} </span>))}</span>
             </div>

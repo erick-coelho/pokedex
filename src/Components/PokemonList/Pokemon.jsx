@@ -19,7 +19,7 @@ const Pokemon = ({ data }) => {
 
     if (detail === null) {
         return (
-            <>-</>
+            <></>
         );
     }
 

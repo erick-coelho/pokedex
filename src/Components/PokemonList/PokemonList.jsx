@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import Pokemon from './Pokemon';
+import { Container, Grid } from '@mui/material';
+import Navbar from '../Navbar/Navbar'
 
 const PokemonList = () => {
 
@@ -12,16 +14,36 @@ const PokemonList = () => {
         })
     }
 
+    const PokemonFilter = (searchName) => {
+        var filteredPokemons = [];
+        if(searchName === "") {
+            fetchList();
+        }
+        for (var i in list) {
+            if (list[i].name.includes(searchName))
+                filteredPokemons.push(list[i]);
+        }
+        
+        setList(filteredPokemons);
+    };
+
     useEffect(() => {
         fetchList();
     }, [])
 
     return (
-        <div>
-            {list.map((item) => (
-                <Pokemon data={item} key={item.name} />
-            ))}
-        </div>
+        <>
+            <Navbar PokemonFilter={PokemonFilter}/>
+            <Container maxWidth="xl">
+                <Grid container spacing={0.5}>
+                    {list.map((item) => (
+                        <Grid item key={item.name} >
+                            <Pokemon data={item} />
+                        </Grid>
+                    ))}
+                </Grid>
+            </Container>
+        </>
     );
 }
 
