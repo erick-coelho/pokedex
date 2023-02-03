@@ -69,18 +69,13 @@ const PokemonDetail = () => {
                             src={pokemon.sprites.front_default}
                         />
                     </Grid>
-                    <Grid item sm={8} sx={{alignItems:'end'}}>
-                        {pokemon.stats.map((item) => 
-                        (<Typography variant="subtitle2" key={item.stat.name}>{item.stat.name}: {item.base_stat}<LinearProgress variant='determinate' value={item.base_stat / 2.5} /> </Typography>))}
+                    <Grid item sm={8} sx={{ alignItems: 'end' }}>
+                        {pokemon.stats.map((item) =>
+                            (<Typography variant="subtitle2" key={item.stat.name}>{item.stat.name}: {item.base_stat}<LinearProgress variant='determinate' value={item.base_stat / 2.5} /> </Typography>))}
                     </Grid>
                 </Grid>
             </Container>
-            <div>
-                <span>{pokemon.name} - {pokemon.stats.map((item) => (<span key={item.stat.name}>{item.stat.name}: {item.base_stat} </span>))}</span>
-            </div>
-            <div>
-                <EvolutionChain name={pokemon.name} url={specie.evolution_chain?.url} />
-            </div>
+            <EvolutionChain name={pokemon.name} url={specie.evolution_chain?.url} id={pokemon.id} />
         </>
     );
 };
