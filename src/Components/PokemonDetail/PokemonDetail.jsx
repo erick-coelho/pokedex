@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import NotFound from "../NotFound/NotFound";
 import EvolutionChain from "./EvolutionChain";
 
 const PokemonDetail = () => {
@@ -33,7 +34,7 @@ const PokemonDetail = () => {
 
     if ((pokemon && specie) === null) {
         return (
-            <>loading...</>
+            <NotFound />
         );
     }
 
@@ -43,7 +44,7 @@ const PokemonDetail = () => {
                 <span>{pokemon.name} - {pokemon.stats.map((item) => (<span key={item.stat.name}>{item.stat.name}: {item.base_stat} </span>))}</span>
             </div>
             <div>
-                <EvolutionChain url={specie.evolution_chain.url} />
+                <EvolutionChain name={pokemon.name} url={specie.evolution_chain?.url} />
             </div>
         </>
     );
