@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios'
+import PokemonCard from '../Assets/PokemonCard';
 
 const Pokemon = ({ data }) => {
     const [detail, setDetail] = useState(null);
@@ -12,7 +12,7 @@ const Pokemon = ({ data }) => {
     }, [data.url])
 
     useEffect(() => {
-        if(data !== null) {
+        if (data !== null) {
             fetchDetail()
         }
     }, [data, fetchDetail])
@@ -24,11 +24,6 @@ const Pokemon = ({ data }) => {
     }
 
     return (
-        <div>
-            <Link to={''+detail.id}>
-                <span>{detail.name} {detail.types.map((item) => (<span key={item.slot}>{item.type.name} </span>))}</span>
-                <img alt='pokemon' src={detail.sprites.front_default} width={50} />
-            </Link>
-        </div>
+        <PokemonCard data={detail} />
     );
 }; export default Pokemon;
