@@ -14,7 +14,12 @@ const PokemonList = () => {
         })
     }
 
+    useEffect(() => {
+        fetchList();
+    }, [])
+
     const PokemonFilter = (searchName) => {
+        searchName = searchName.toLowerCase()
         var filteredPokemons = [];
         if(searchName === "") {
             fetchList();
@@ -26,10 +31,6 @@ const PokemonList = () => {
         
         setList(filteredPokemons);
     };
-
-    useEffect(() => {
-        fetchList();
-    }, [])
 
     return (
         <>

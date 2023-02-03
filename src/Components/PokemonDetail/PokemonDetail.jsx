@@ -1,9 +1,10 @@
+import { Box, Grid, LinearProgress, Typography } from "@mui/material";
+import { Container } from "@mui/system";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useParams, redirect } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import NotFound from "../NotFound/NotFound";
-import PokemonList from "../PokemonList/PokemonList";
 import EvolutionChain from "./EvolutionChain";
 
 const PokemonDetail = () => {
@@ -36,7 +37,7 @@ const PokemonDetail = () => {
                 fetchSpecie();
             }
         }
-    }, [id,fetchPokemon, pokemon, fetchSpecie])
+    }, [id, fetchPokemon, pokemon, fetchSpecie])
 
     const PokemonFilter = (searchName) => {
         redirect('/')
@@ -44,13 +45,36 @@ const PokemonDetail = () => {
 
     if ((pokemon && specie) === null) {
         return (
-            <NotFound />
+            <>
+                <Navbar PokemonFilter={PokemonFilter} />
+                <NotFound />
+            </>
         );
     }
 
     return (
         <>
-        <Navbar PokemonFilter={PokemonFilter}/>
+            <Navbar PokemonFilter={PokemonFilter} />
+            <Container maxWidth='lg' >
+                <Typography textAlign={'center'} variant="h1" gutterBottom>{pokemon.name.toUpperCase()}</Typography>
+                <Grid container>
+                    <Grid item sm={4}>
+                        <Box sx={{
+                            height: 233,
+                            width: 350,
+                            maxHeight: { xs: 233, md: 167 },
+                            maxWidth: { xs: 350, md: 250 },
+                        }}
+                            component={"img"}
+                            src={pokemon.sprites.front_default}
+                        />
+                    </Grid>
+                    <Grid item sm={8} sx={{alignItems:'end'}}>
+                        {pokemon.stats.map((item) => 
+                        (<Typography variant="subtitle2" key={item.stat.name}>{item.stat.name}: {item.base_stat}<LinearProgress variant='determinate' value={item.base_stat / 2.5} /> </Typography>))}
+                    </Grid>
+                </Grid>
+            </Container>
             <div>
                 <span>{pokemon.name} - {pokemon.stats.map((item) => (<span key={item.stat.name}>{item.stat.name}: {item.base_stat} </span>))}</span>
             </div>
