@@ -12,8 +12,10 @@ const Pokemon = ({ data }) => {
     }, [data.url])
 
     useEffect(() => {
-        fetchDetail()
-    }, [fetchDetail])
+        if(data !== null) {
+            fetchDetail()
+        }
+    }, [data, fetchDetail])
 
     if (detail === null) {
         return (

@@ -28,9 +28,13 @@ const PokemonDetail = () => {
 
 
     useEffect(() => {
-        fetchPokemon();
-        fetchSpecie();
-    }, [fetchPokemon, fetchSpecie])
+        if (id !== null && parseInt(id)) {
+            fetchPokemon();
+            if (pokemon !== null) {
+                fetchSpecie();
+            }
+        }
+    }, [id,fetchPokemon, pokemon, fetchSpecie])
 
     if ((pokemon && specie) === null) {
         return (

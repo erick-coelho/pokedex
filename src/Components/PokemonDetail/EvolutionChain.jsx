@@ -29,9 +29,9 @@ const EvolutionChain = ({ url, name }) => {
     return (
         <>
             <span>{evolutionChain.chain.species.name}  </span>
-            {evolutionChain.chain.evolves_to.length > 0 && (<>{evolutionChain.chain.evolves_to.map((item, key) => (
+            {evolutionChain.chain.evolves_to.length > 0 && (<>{' > '}{evolutionChain.chain.evolves_to.map((item, key) => (
                 <span key={key}>
-                    {' > '}{item.species.name}
+                    {item.species.name + " " }
                     {item.evolves_to.length > 0 && (<>{item.evolves_to.map((item, key) => (
                     <span key={key}> {' > '}{item.species.name}</span>
                 ))}</>)}
