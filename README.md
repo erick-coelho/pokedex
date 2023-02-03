@@ -17,8 +17,6 @@ You may also see any lint errors in the console.
 
 ## Resources
 
-### Analyzing the Bundle Size
-
 ### Mui
 
 ### React Router Dom
