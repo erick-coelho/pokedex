@@ -3,6 +3,7 @@ import { Container } from "@mui/system";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useParams, redirect } from "react-router-dom";
+import PokemonButton from "../Assets/PokemonButton";
 import Navbar from "../Navbar/Navbar";
 import NotFound from "../NotFound/NotFound";
 import EvolutionChain from "./EvolutionChain";
@@ -57,6 +58,14 @@ const PokemonDetail = () => {
             <Navbar PokemonFilter={PokemonFilter} />
             <Container maxWidth='lg' >
                 <Typography textAlign={'center'} variant="h1" gutterBottom>{pokemon.name.toUpperCase()}</Typography>
+                <Grid container>
+                    <Grid item md={6}>
+                        <PokemonButton value='previous pokemon' data={pokemon}/>
+                    </Grid>
+                    <Grid item md={6}>
+                        <PokemonButton value='next pokemon' data={pokemon}/>
+                    </Grid>
+                </Grid>
                 <Grid container>
                     <Grid item sm={4}>
                         <Box sx={{
