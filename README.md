@@ -1,9 +1,10 @@
 # Pokedex
 
----Project Under Construction---
-![image](https://user-images.githubusercontent.com/22750704/216730219-b8adc7d0-ea39-431d-b789-b0c24a59b3e6.png)
-![image](https://user-images.githubusercontent.com/22750704/216730282-f71c5efb-5998-4b60-a0bf-7f884d758ee1.png)
+## Images
 
+![image](https://user-images.githubusercontent.com/22750704/216842883-819385af-aa29-44c7-a155-7ef7fc90ed56.png)
+
+![image](https://user-images.githubusercontent.com/22750704/216842907-17c362ad-b556-4e67-a3b4-19efda016fbe.png)
 
 
 ## Available Scripts
